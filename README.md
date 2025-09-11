@@ -12,8 +12,13 @@
 
 ## Tim Pengajar Praktikum
 
-👨‍🏫 Muhamad Nabil Fannani (Informatika - 2024) [Github](https://github.com/Nabil-Fan) 
-👨‍🏫 Wiwid Widyaningsih (Informatika - 2024) [Github](https://github.com/) 
+Muhamad Nabil Fannani (Informatika - 2024) [Github](https://github.com/Nabil-Fan) 
+
+Wiwid Widyaningsih (Informatika - 2024) [Github](https://github.com/wiwidw) 
+
+Alena Mashia Qolby (Informatika - 2024) [Github](https://github.com/midnightbluee2) 
+
+Aisyah Nurul Sholikhah (Informatika -2024) [Github](https://github.com/ArluxSho) 
 
 ## Bahasa dan Peralatan
 
