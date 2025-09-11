@@ -12,8 +12,14 @@
 
 ## Tim Pengajar Praktikum
 
+Kelas C
+🧑‍🏫 Aisyah Nurul Sholikhah (Informatika - 2024) [Github](https://github.com/ArluxSho)
+
+🧑‍🏫 Alena Mashia Qolby (Informatika - 2024) [Github](https://github.com/midnightbluee2)
+
 👨‍🏫 Muhamad Nabil Fannani (Informatika - 2024) [Github](https://github.com/Nabil-Fan) 
-👨‍🏫 Wiwid Widyaningsih (Informatika - 2024) [Github](https://github.com/) 
+
+👨‍🏫 Wiwid Widyaningsih (Informatika - 2024) [Github](https://github.com/wiwidw)
 
 ## Bahasa dan Peralatan
 
