@@ -1,10 +1,10 @@
-<h1 align="center">Praktikum Dasar Pemrograman - S1 Informatika UNS</h1>
+<h1 align="center">Praktikum Konsep Pemrograman - S1 Informatika UNS</h1>
 
 <p align="center">
 <img width="400" src="https://img.freepik.com/free-vector/programming-concept-illustration_114360-1351.jpg?w=1060"></img>
 </p>
 
-<h3 align="center">Tahun Akademik 2024/2026</h3>
+<h3 align="center">Tahun Akademik 2025/2026</h3>
 
 [>> Kontrak Praktikum](kontrak.md)
 
@@ -13,7 +13,7 @@
 ## Tim Pengajar Praktikum
 
 👨‍🏫 Muhamad Nabil Fannani (Informatika - 2024) [Github](https://github.com/Nabil-Fan) 
-👨‍🏫 Andradhi Bondan Pamungkas (Informatika - 2024) [Github](https://github.com/) 
+👨‍🏫 Wiwid Widyaningsih (Informatika - 2024) [Github](https://github.com/) 
 
 ## Bahasa dan Peralatan
 

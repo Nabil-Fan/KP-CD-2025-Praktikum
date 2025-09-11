@@ -1,4 +1,4 @@
-# Peraturan Praktikum Dasar Pemrograman 2024
+# Peraturan Praktikum Konsep Pemrograman 2025
 
 - Praktikum dilaksanakan setiap hari  () di 
 - Total pertemuan praktikum: 12 kali 100 menit
@@ -15,7 +15,7 @@
   - Responsi 2: 35%
 
 - Keterlambatan pengumpulan tugas:
-  - Dikurangi 2 poin/hari (termasuk hari libur)
+  - Dikurangi 2 poin/hari 
 
 - Materi dan tugas akan diunggah melalui `Google Clasroom` dan `Github`
 - Komunikasi melalui grup Whatsapp dan konsultasi langsung dengan asisten praktikum
