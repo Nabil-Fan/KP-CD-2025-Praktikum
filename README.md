@@ -21,22 +21,9 @@ Kelas C
 
 Kelas D
 
-Kelas C
+👨‍🏫 Muhamad Nabil Fannani (Informatika - 2024) [Github](https://github.com/Nabil-Fan) 
 
-🧑‍🏫 Aisyah Nurul Sholikhah (Informatika - 2024) [Github](https://github.com/ArluxSho)
-
-🧑‍🏫 Alena Mashia Qolby (Informatika - 2024) [Github](https://github.com/midnightbluee2)
-
-
-Kelas D
-
-Muhamad Nabil Fannani (Informatika - 2024) [Github](https://github.com/Nabil-Fan) 
-
-Wiwid Widyaningsih (Informatika - 2024) [Github](https://github.com/wiwidw) 
-
-Alena Mashia Qolby (Informatika - 2024) [Github](https://github.com/midnightbluee2) 
-
-Aisyah Nurul Sholikhah (Informatika -2024) [Github](https://github.com/ArluxSho) 
+👨‍🏫 Wiwid Widyaningsih (Informatika - 2024) [Github](https://github.com/wiwidw)
 
 ## Bahasa dan Peralatan
 
