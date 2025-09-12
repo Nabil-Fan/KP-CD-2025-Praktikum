@@ -1,7 +1,7 @@
 <h1 align="center">Praktikum Konsep Pemrograman - S1 Informatika UNS</h1>
 
 <p align="center">
-<img width="400" src="https://img.freepik.com/free-vector/programming-concept-illustration_114360-1351.jpg?w=1060"></img>
+<img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/9d0fd0c4-5c7f-4122-b884-64a1e1685d2d" width="500">
 </p>
 
 <h3 align="center">Tahun Akademik 2025/2026</h3>
