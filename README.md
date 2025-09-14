@@ -23,7 +23,7 @@ Kelas D
 
 👨‍🏫 Muhamad Nabil Fannani (Informatika - 2024) [Github](https://github.com/Nabil-Fan) 
 
-👨‍🏫 Wiwid Widyaningsih (Informatika - 2024) [Github](https://github.com/wiwidw)
+🧑‍🏫 Wiwid Widyaningsih (Informatika - 2024) [Github](https://github.com/wiwidw)
 
 ## Bahasa dan Peralatan
 
