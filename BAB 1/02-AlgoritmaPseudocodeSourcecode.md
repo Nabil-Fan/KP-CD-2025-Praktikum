@@ -88,4 +88,4 @@ int main() {
 }
 ```
 
-[>> Materi Berikutnya (Algoritma, Pseudocode, dan Source Code)>>](03-OperasiAssignmentdanAritmatika.md)
+[>> Materi Berikutnya (Operasi Assignment dan Aritmatika)>>](03-OperasiAssignmentdanAritmatika.md)
