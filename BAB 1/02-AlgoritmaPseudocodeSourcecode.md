@@ -87,3 +87,5 @@ int main() {
     return 0;
 }
 ```
+
+[>> Materi Berikutnya (Algoritma, Pseudocode, dan Source Code)>>](03-OperasiAssignmentdanAritmatika.md)
