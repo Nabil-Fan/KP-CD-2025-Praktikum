@@ -50,7 +50,7 @@ Outer Loop i = 3
   Inner Loop j = 2
 ```
 
-##  **IMPLEMENTASI BANGUN DATAR**
+##  **IMPLEMENTASI**
 
 ### 1. **PERSEGI / KOTAK**
 
