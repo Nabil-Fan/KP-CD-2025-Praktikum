@@ -7,10 +7,6 @@ Setiap program C setidaknya memiliki satu fungsi yaitu fungsi `main`.
 
 Kalian setidaknya dapat membagi kode anda dalam beberapa fungsi yang berbeda dengan tiap fungsi mengerjakan tugas yang spesifik.
 
-Deklarasi fungsi menyatakan nama, return type, dan parameter dari suatu fungsi. Ketika, mendefinisikan suatu fungsi, Kalian juga dapat menuliskan isi dari fungsi tersebut.
-
-C standard library menydiakan beberapa fungsi bawaan yang dapat dipanggil langsung oleh program kalian. Contoh fungsi bawaan tersebut diantaranya adalah printf() yang digunakan untuk menampilkan output ke console, lalu ada fungsi scanf() yang untuk menerima input dari console, dan masih banyak lagi.
-
 ## Mendefinisikan Function
 
 ```c
