@@ -18,7 +18,7 @@ Kalian setidaknya dapat membagi kode anda dalam beberapa fungsi yang berbeda den
 
 - __Return type__   : return_type merupakan tipe data dari nilai yang dikembalikan oleh fungsi, tetapi terdapat fungsi yang tidak perlu menggunakan pengembalian nilai, yaitu fungsi yang memiliki return_type **void**.
 - __Function name__ : function_name adalah nama dari suatu fungsi yang memiliki keunikan agar membedakan dengan fungsi yang lain
-- __Parameters__    : ketika suatu fungsi dipanggil, kalian memberikan nilai ke parameter untuk nantinya disubstitusikan dalam body function tersebut. Parameter sendiri bersifat opsional sehingga beberapa fungsi mungkin tidak terdapat parameter (diisi dengan `()` kosong)
+- __Parameters__    : ketika suatu fungsi dipanggil, kalian memberikan nilai ke parameter untuk nantinya disubstitusikan dalam body function tersebut. 
 - __Body Function__ : berisikan suatu kode yang mendefinisikan bagaimana fungsi tersebut bekerja.
 
 ### Example
