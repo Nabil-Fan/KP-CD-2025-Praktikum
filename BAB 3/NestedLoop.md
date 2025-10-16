@@ -1,0 +1,115 @@
+# Nested Loop dalam Bahasa C - Penjelasan Lengkap dengan Implementasi
+
+## **Konsep Dasar Nested Loop**
+
+### 1. **Pengertian Nested Loop**
+**Nested Loop** (Perulangan Bersarang) adalah struktur loop yang berada di dalam loop lainnya. Loop di dalam disebut inner loop, sedangkan loop di luar disebut outer loop. 
+
+**Analoginya:** 
+Seperti jam yang memiliki jarum jam (outer loop) dan jarum menit (inner loop). Untuk setiap 1 langkah jarum jam, jarum menit harus menyelesaikan 60 langkah terlebih dahulu.
+
+### 2. **Struktur Dasar**
+```c
+for (inisialisasi_outer; kondisi_outer; increment_outer) {    // Outer Loop
+    for (inisialisasi_inner; kondisi_inner; increment_inner) { // Inner Loop
+        // Statement yang diulang
+    }
+}
+```
+
+### 3. **Alur Eksekusi**
+```c
+#include <stdio.h>
+
+int main() {
+    printf("Contoh Nested Loop Sederhana:\n");
+    
+    for (int i = 1; i <= 3; i++) {          // Outer Loop
+        printf("Outer Loop i = %d\n", i);
+        
+        for (int j = 1; j <= 2; j++) {      // Inner Loop
+            printf("  Inner Loop j = %d\n", j);
+        }
+    }
+    
+    return 0;
+}
+```
+
+**Output:**
+```
+Contoh Nested Loop Sederhana:
+Outer Loop i = 1
+  Inner Loop j = 1
+  Inner Loop j = 2
+Outer Loop i = 2
+  Inner Loop j = 1
+  Inner Loop j = 2
+Outer Loop i = 3
+  Inner Loop j = 1
+  Inner Loop j = 2
+```
+
+##  **IMPLEMENTASI**
+
+### 1. **PERSEGI / KOTAK**
+
+#### **Kode Program:**
+```c
+
+    int sisi = 5;
+
+    for (int i = 0; i < sisi; i++) {        // Loop untuk baris
+        for (int j = 0; j < sisi; j++) {    // Loop untuk kolom
+            printf("* ");
+        }
+        printf("\n");
+
+```
+
+#### **Output:**
+```
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+■ ■ ■ ■ ■ 
+```
+
+#### **Penjelasan Detil:**
+- **Outer Loop**: Bertanggung jawab untuk membuat 5 baris
+- **Inner Loop**: Untuk setiap baris, membuat 5 kolom
+
+---
+
+### 2. **SEGITIGA SIKU-SIKU**
+
+#### **Kode Program:**
+```c
+    int tinggi = 5;
+
+    for (int i = 1; i <= tinggi; i++) {         // Loop baris
+        for (int j = 1; j <= i; j++) {          // Loop kolom (meningkat)
+            printf("* ");
+        }
+        printf("\n");
+    }
+```
+
+#### **Output:**
+```
+★ 
+★ ★ 
+★ ★ ★ 
+★ ★ ★ ★ 
+★ ★ ★ ★ ★ 
+```
+
+#### **Penjelasan Detil:**
+- **Baris 1**: Inner loop jalan 1 kali → 1 bintang
+- **Baris 2**: Inner loop jalan 2 kali → 2 bintang  
+- **Baris 3**: Inner loop jalan 3 kali → 3 bintang
+- **Pola**: Jumlah bintang = nomor baris
+
+---
+
