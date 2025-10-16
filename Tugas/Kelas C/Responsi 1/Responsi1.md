@@ -8,8 +8,8 @@ Buatlah sebuah program (skala menengah) menggunakan bahasa C yang menerapkan mat
 2. I/O
 3. Conditional (boleh menggunakan if-else atau switch)
 4. Looping (boleh menggunakan for atau while atau do...while)
-35 Fungsi buatan sendiri (main tidak terhitung)
-6. Array (tidak harus multidimensi, string/array of char tidak terhitung)
+5. Array (tidak harus multidimensi, string/array of char tidak terhitung)
+6. Fungsi buatan sendiri (main tidak terhitung)
 
 Program yang dibuat harus memenuhi salah satu dari 15 tema berikut:
 
@@ -41,7 +41,7 @@ Selanjutnya, buat sebuah laporan dokumentasi (pdf). Buat penjelasan dari program
 - Looping (15 poin)
 - Conditional (10 poin)
 - Array (20 poin)
-- fungsi (10 poin)
+- Fungsi (10 poin)
 
 Pengembangan fungsi, kerapian, comment, kompleksitas program, dan kelengkapan laporan akan menjadi nilai tambahan.
 
@@ -61,6 +61,6 @@ Pengembangan fungsi, kerapian, comment, kompleksitas program, dan kelengkapan la
 
 Misal mengerjakan tema Perusahaan dengan kode 06 maka formatnya:
 
-- `Responsi1_06_L0123117_AlenaMashiaQolby.c`
+- `Responsi1_06_L0124129_AlenaMashiaQolby.c`
 
-- `Responsi1_06_L0123117_AlenaMashiaQolby.pdf`
+- `Responsi1_06_L0124129_AlenaMashiaQolby.pdf`
