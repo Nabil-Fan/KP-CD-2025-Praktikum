@@ -7,10 +7,6 @@ Setiap program C setidaknya memiliki satu fungsi yaitu fungsi `main`.
 
 Kalian setidaknya dapat membagi kode anda dalam beberapa fungsi yang berbeda dengan tiap fungsi mengerjakan tugas yang spesifik.
 
-Deklarasi fungsi menyatakan nama, return type, dan parameter dari suatu fungsi. Ketika, mendefinisikan suatu fungsi, Kalian juga dapat menuliskan isi dari fungsi tersebut.
-
-C standard library menydiakan beberapa fungsi bawaan yang dapat dipanggil langsung oleh program kalian. Contoh fungsi bawaan tersebut diantaranya adalah printf() yang digunakan untuk menampilkan output ke console, lalu ada fungsi scanf() yang untuk menerima input dari console, dan masih banyak lagi.
-
 ## Mendefinisikan Function
 
 ```c
@@ -22,7 +18,7 @@ C standard library menydiakan beberapa fungsi bawaan yang dapat dipanggil langsu
 
 - __Return type__   : return_type merupakan tipe data dari nilai yang dikembalikan oleh fungsi, tetapi terdapat fungsi yang tidak perlu menggunakan pengembalian nilai, yaitu fungsi yang memiliki return_type **void**.
 - __Function name__ : function_name adalah nama dari suatu fungsi yang memiliki keunikan agar membedakan dengan fungsi yang lain
-- __Parameters__    : ketika suatu fungsi dipanggil, kalian memberikan nilai ke parameter untuk nantinya disubstitusikan dalam body function tersebut. Parameter sendiri bersifat opsional sehingga beberapa fungsi mungkin tidak terdapat parameter (diisi dengan `()` kosong)
+- __Parameters__    : ketika suatu fungsi dipanggil, kalian memberikan nilai ke parameter untuk nantinya disubstitusikan dalam body function tersebut. 
 - __Body Function__ : berisikan suatu kode yang mendefinisikan bagaimana fungsi tersebut bekerja.
 
 ### Example
