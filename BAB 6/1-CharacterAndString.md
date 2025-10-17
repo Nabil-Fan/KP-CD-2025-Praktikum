@@ -72,29 +72,6 @@ Character Handling Library memungkinkan kita untuk memanipulasi atau memproses c
   </tr>
 </table>
 
-## String-Conversion Functions
-
-String-conversion functions digunakan untuk mengubah string menjadi nilai numerik dan sebaliknya. Dengan menggunakan fungsi-fungsi ini, kita dapat mengubah string menjadi double, long, atau unsigned long. Dan sebaliknya, kita dapat mengubah double, long, atau unsigned long menjadi string. Untuk dapat mengakses fungsi-fungsi string-conversion, kita harus menyertakan library `<stdlib.h>`.
-
-<table border="1">
-  <tr>
-    <th style="width:45%; text-align: center;">Prototype</th>
-    <th style="width:55%; text-align: center;">Deskripsi Fungsi</th>
-  </tr>
-  <tr>
-    <td><code>double strtod(const char *nPtr, char **endPtr)</code></td>
-    <td>Mengubah string <code>nPtr</code> ke double</td>
-  </tr>
-  <tr>
-    <td><code>long strtol(const char *nPtr, char **endPtr, int base)</code></td>
-    <td>Mengubah string <code>nPtr</code> ke long</td>
-  </tr>
-  <tr>
-    <td><code>unsigned long strtoul(const char *nPtr, char **endPtr, int base)</code></td>
-    <td>Mengubah string <code>nPtr</code> ke unsigned long</td>
-  </tr>
-</table>
-
 ## Standard Input/Output Library
 
 Standard input/output library berisi fungsi-fungsi yang digunakan untuk menangani input/output dari standard input device (seperti keyboard) dan standard output device (seperti layar). Input/output yang dilakukan oleh program dapat berupa text, number, maupun karakter-karakter khusus. Untuk dapat menggunakan fungsi-fungsi tersebut kita harus menyertakan library `<stdio.h>`.
@@ -129,6 +106,68 @@ Standard input/output library berisi fungsi-fungsi yang digunakan untuk menangan
     <td>Membaca input dari array <code>s</code> seperti <code>scanf</code>, dan mengembalikan jumlah item yang terbaca.</td>
   </tr>
 </table>
+
+<details>
+<summary>Source Code</summary>
+
+```c
+#include <stdio.h>
+
+int main() {
+    int c;
+    printf("Ketik satu huruf: ");
+    c = getchar();   // baca satu karakter
+    printf("Karakter yang dibaca: %c\n", c);
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+    char str[50];
+    printf("Masukkan teks: ");
+    fgets(str, sizeof(str), stdin);  // baca string
+    printf("Teks yang dibaca: %s\n", str);
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+    putchar('A');   // cetak satu huruf
+    putchar('\n');  // cetak newline
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+    puts("Halo, dunia!");  // langsung ada newline
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+    char buffer[100];
+    int umur = 20;
+    sprintf(buffer, "Umur saya %d tahun", umur);
+    puts(buffer);   // tampilkan hasil sprintf
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+    char data[] = "123 45.67";
+    int a;
+    float b;
+    sscanf(data, "%d %f", &a, &b);
+    printf("Hasil parsing: a = %d, b = %.2f\n", a, b);
+    return 0;
+}
+```
+</details>
 
 ## String Handling Library
 
@@ -204,33 +243,60 @@ String Handling Library memungkinkan kita untuk memanipulasi string-string yang 
   </tr>
 </table>
 
-### 3. Fungsi Memori
+<details>
+<summary>Source Code</summary>
 
-<table border="1">
-  <tr>
-    <th style="width:45%; text-align: center;">Prototipe Fungsi</th>
-    <th style="width:55%; text-align: center;">Deskripsi Fungsi</th>
-  </tr>
-  <tr>
-    <td><code>void *memcpy(void *s1, const void *s2, size_t n);</code></td>
-    <td>Menyalin n byte dari objek yang ditunjuk oleh <code>s2</code> ke objek yang ditunjuk oleh <code>s1</code>, kemudian mengembalikan pointer ke objek hasil salinan.</td>
-  </tr>
-  <tr>
-    <td><code>void *memmove(void *s1, const void *s2, size_t n);</code></td>
-    <td>Menyalin n byte dari objek yang ditunjuk oleh <code>s2</code> ke objek yang ditunjuk oleh <code>s1</code>. Penyalinan dilakukan seolah-olah byte tersebut pertama kali disalin dari objek yang ditunjuk oleh <code>s2</code> ke dalam array sementara dan kemudian dari array sementara tersebut ke objek yang ditunjuk oleh <code>s1</code>. Pointer ke objek hasil salinan dikembalikan.</td>
-  </tr>
-  <tr>
-    <td><code>int memcmp(const void *s1, const void *s2, size_t n);</code></td>
-    <td>Membandingkan n byte pertama dari objek yang ditunjuk oleh <code>s1</code> dan <code>s2</code>. Fungsi ini mengembalikan 0 jika <code>s1</code> sama dengan <code>s2</code>, kurang dari 0 jika <code>s1</code> lebih kecil dari <code>s2</code>, atau lebih besar dari 0 jika <code>s1</code> lebih besar dari <code>s2</code>.</td>
-  </tr>
-  <tr>
-    <td><code>void *memchr(const void *s, int c, size_t n);</code></td>
-    <td>Menemukan kemunculan pertama <code>c</code> (dikonversi menjadi unsigned char) dalam n byte pertama dari objek yang ditunjuk oleh <code>s</code>. Jika <code>c</code> ditemukan, <code>memchr</code> mengembalikan pointer ke <code>c</code> dalam objek; jika tidak, mengembalikan <code>NULL</code>.</td>
-  </tr>
-  <tr>
-    <td><code>void *memset(void *s, int c, size_t n);</code></td>
-    <td>Menyalin <code>c</code> (dikonversi menjadi unsigned char) ke dalam n byte pertama dari objek yang ditunjuk oleh <code>s</code>, kemudian mengembalikan pointer ke hasilnya.</td>
-  </tr>
-</table>
+```c
+#include <stdio.h>
+int main() {
+
+    // MANIP
+    char a[20], b[] = "Halo";
+    strcpy(a, b); // a = "Halo"
+
+    char a[20];
+    strncpy(a, "Praktikum", 5); // a = "Prakt"
+
+    char a[20] = "Hello ";
+    char b[] = "World";
+    strcat(a, b); // a = "Hello World"
+
+    char a[20] = "Data";
+    strncat(a, "Structure", 4); // a = "DataStru"
+
+    // PENCARIAN
+    char str[] = "informatika";
+    printf("%s", strchr(str, 'm')); // output: "matika"
+
+    char s1[] = "abcdef";
+    char s2[] = "xzce";
+    printf("%zu", strcspn(s1, s2)); // output: 2 ("ab")
+
+    char s1[] = "abcde321";
+    char s2[] = "abcde";
+    printf("%zu", strspn(s1, s2)); // output: 5
+
+    char s1[] = "praktikum";
+    char s2[] = "xyz";
+    printf("%s", strpbrk(s1, s2)); // output: NULL (tidak ada huruf x, y, z)
+
+    char str[] = "informatika";
+    printf("%s", strrchr(str, 'a')); // output: "a"
+
+    char str[] = "praktikum c";
+    printf("%s", strstr(str, "tik")); // output: "tikum c"
+
+    char str[] = "satu,dua,tiga";
+    char *token = strtok(str, ",");
+    while(token != NULL) {
+        printf("%s\n", token);
+        token = strtok(NULL, ",");
+    }
+
+    return 0;
+    
+}
+```
+</details>
 
 [&gt;&gt; Silabus &gt;&gt;](/silabus.md)
