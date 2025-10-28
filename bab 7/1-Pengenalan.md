@@ -1,163 +1,227 @@
-6.1 - Pengenalan Pointer
-Apa Itu Pointer?
-Pointer adalah variabel khusus yang menyimpan alamat memori dari variabel lain. Bayangkan pointer seperti alamat rumah - alamatnya bukan rumah itu sendiri, tapi menunjukkan lokasi rumah tersebut.
+[<< Silabus](../silabus.md)
 
-c
-int angka = 10;      // Variabel biasa (isi: 10)
-int *pointer_angka;  // Pointer ke integer (isi: alamat memori)
-Mengapa Belajar Pointer?
-Pointer memungkinkan kita mengubah nilai variabel dari luar scope function. Perhatikan masalah berikut:
+# 6.1 - Pengenalan Pointer
 
-c
+Apa itu pointer? **Pointer** merupakan sebuah **modifikasi** pada suatu tipe data tertentu sehingga nilainya berupa **alamat memori** yang merujuk pada suatu **variabel/data**.
+
+Apa pentingnya belajar pointer? Pointer memungkinkan kita untuk **mengganti** nilai dari suatu **variabel** yang **tidak berada pada scope yang sama** (jika kalian belum paham apa itu scope, lihat [referensi ini](../Bab4-CFunction/3-Scope.md)). Sebagai contoh, perhatikan kode berikut:
+
+```c
 #include <stdio.h>
 
 void kurangi_health(int jumlah);
 
 int main() {
     int health = 100;
-    
-    printf("Health awal: %d\n", health);  // Output: 100
-    
-    kurangi_health(20);  // Ingin mengurangi health sebesar 20
-    
-    printf("Health akhir: %d\n", health); // Masih 100! Tidak berubah!
-    
+
+    printf("Health awal: %d\n", health);
+
+    /* Asumsikan anda ingin mengurangi nilai dari `health` sebesar 20 */
+    /* Akan tetapi anda tidak ingin mengurangkannya langsung di sini, melainkan melalui suatu function */
+    kurangi_health(20);
+
+    printf("Health akhir: %d\n", health);
+
     return 0;
 }
 
 void kurangi_health(int jumlah) {
-    /* PROBLEM: Di sini tidak bisa mengakses variabel `health` 
-       karena berada di scope yang berbeda */
-    
-    health = health - jumlah;  // ERROR! Variabel `health` tidak dikenal
+    /* Namun terdapat suatu masalah di sini, yaitu scopenya berbeda dengan main() */
+    /* Sehingga pada area ini, `health` tidak terdefinisi dan kode di bawah akan memproduksi error */
+
+    health = health - jumlah; /* ERROR: compiler tidak dapat menemukan variabel `health` */
 }
-Solusi: Dengan pointer, kita bisa mengatasi masalah ini!
+```
 
-Cara Mendeklarasikan Pointer
-c
-// Format: <tipe_data> *<nama_variabel>
-int *pointer_int;        // Pointer ke integer
-float *pointer_float;    // Pointer ke float
-char *pointer_char;      // Pointer ke character
-Contoh Deklarasi:
-c
-int *health_ptr;     // Style 1
-int* ammo_ptr;       // Style 2 - sama saja
-Deklarasi Multiple Pointer:
-c
-// BENAR: kedua variabel adalah pointer
+Oke jadi kode di atas merupakan contoh permasalahan yang dapat diselesaikan menggunakan teknik atau konsep **pointer** sebagai motivasi anda dalam belajar pointer supaya mengetahui pentingnya pointer dalam bahasa C. Solusi dari permasalahan tersebut akan ada pada topik berikutnya, yaitu **Pass By Reference**.
+
+## Deklarasi Pointer
+
+Pointer dapat dideklarasikan dengan format sebagai berikut:
+
+```
+<Tipe Data> *<Nama Variabel>;
+```
+
+Sebagai contoh:
+
+```c
+int *health_ptr;
+```
+
+Kode di atas mendeklarasikan variabel `health_ptr` yang bertipe **pointer to int(eger) value**. Sehingga data yang ada di dalam pointer tersebut memiliki tipe data **int**.
+
+Penulisan di bawah juga memiliki arti yang sama. Sesuaikan saja dengan style penulisan masing-masing individu.
+
+```c
+int* health_ptr;
+```
+
+Jika ingin mendeklarasikan banyak pointer sekaligus di satu baris untuk mempersingkat penulisan, perhatikan contoh berikut:
+
+```c
 int *health_ptr, *ammo_ptr;
+```
 
-// SALAH: hanya health_ptr yang pointer, ammo_ptr adalah integer biasa
+Kode di atas mendeklarasikan variabel `health_ptr` dan `ammo_ptr` yang keduanya bertipe **pointer to int(eger) value**
+
+**TETAPI INGAT!!**
+
+Perhatikan kode di bawah
+
+```c
 int* health_ptr, ammo_ptr;
-Cara Menggunakan Pointer
-1. Inisialisasi Pointer
-c
+```
+
+Kode tersebut **tidak** menganggap `ammo_ptr` sebagai pointer sehingga yang dianggap pointer hanyalah `health_ptr` saja. Dengan demikian, pemberian tanda asterisk (\*) harus diperhatikan apabila ingin mendeklarasikan banyak pointer sekaligus.
+
+## Inisialisasi Pointer
+
+Setelah pointer dideklarasikan, tidak mungkin pointer tersebut langsung mengarah ke variabel tertentu. Oleh karena itu, harus di-inisialisasikan terlebih dahulu. Sebagai contoh:
+
+```c
 int health = 100;
 int *health_ptr;
 
-// Buat health_ptr menunjuk ke variabel health
-health_ptr = &health;  // & = operator "address of"
-2. Membaca Nilai dari Pointer (Dereferencing)
-c
+/* ... */
+
+/* Buat `health_ptr` merujuk ke variabel `health` */
+health_ptr = &health;
+```
+
+Kode di atas membuat pointer `health_ptr` supaya mengarah ke variabel `health` dengan operasi _referencing_ (tanda &). Dengan demikian, variabel `health` juga dapat diakses melalui pointer `health_ptr`.
+
+## Membaca (Read) Data dari Pointer
+
+Nilai variabel yang ada dalam pointer dapat dibaca menggunakan operasi _dereferencing_ (tanda \* pada prefiks suatu variabel bertipe pointer yang telah dideklarasikan). Sebagai contoh:
+
+```c
 int health = 100;
 int *health_ptr = &health;
 
-printf("Health: %d\n", *health_ptr);  // Output: 100
-// * = operator "value of" (ambil nilai dari alamat yang ditunjuk)
+/* ... */
 
-health = 50;  // Ubah nilai asli
-printf("Health sekarang: %d\n", *health_ptr);  // Output: 50
-3. Mengubah Nilai melalui Pointer
-c
-int health = 100;
-int *health_ptr = &health;
+/* Membaca nilai dari variabel yang dirujuk oleh pointer `health_ptr` */
+/* Menggunakan operasi dereferencing (*) */
+printf("Health sekarang: %d\n", *health_ptr);
 
-printf("Health awal: %d\n", health);  // Output: 100
+health = 50; /* Ganti nilai variabel `health` */
 
-*health_ptr = 75;  // Ubah nilai melalui pointer
+/* Nilai hasil dereferencing selalu menyesuaikan nilai dari variabel yang dirujuknya */
+/* Sehingga perubahan apapun pada variabel yang dirujuk, juga mempengaruhi hasil dereferencingnya */
+printf("Health sekarang: %d\n", *health_ptr);
 
-printf("Health akhir: %d\n", health);  // Output: 75
-NULL Pointer
-Pointer yang belum siap digunakan sebaiknya di-set ke NULL:
-
-c
-#include <stddef.h>  // Untuk definisi NULL
-
-int main() {
-    int health = 100;
-    int *health_ptr = NULL;  // Pointer kosong
-    
-    int pilihan;
-    printf("Masukkan 1 untuk bertarung, 0 untuk keluar: ");
-    scanf("%d", &pilihan);
-    
-    if (pilihan == 1) {
-        health_ptr = &health;  // Sekarang menunjuk ke health
-        printf("Siap bertarung!\n");
-    }
-    
-    if (health_ptr != NULL) {
-        // Hanya dijalankan jika pointer tidak NULL
-        *health_ptr = 85;
-        printf("Health setelah bertarung: %d\n", health);
-    } else {
-        printf("Anda keluar dari permainan\n");
-    }
-    
-    return 0;
-}
-Constant Pointer (Pointer Baca-Saja)
-Membuat pointer yang hanya bisa membaca, tidak bisa mengubah nilai:
-
-c
-int health = 100;
-const int *health_ptr = &health;  // Read-only pointer
-
-// BISA: Membaca nilai
-printf("Health: %d\n", *health_ptr);  // Output: 100
-
-// TIDAK BISA: Mengubah nilai
-*health_ptr = 50;  // ERROR! Compiler akan menolak
-
-// Catatan: variabel asli masih bisa diubah
-health = 50;  // Ini boleh
-Ringkasan Operator Pointer
-Operator	Contoh	Arti
-*	*ptr	Ambil nilai dari alamat yang ditunjuk
-&	&var	Ambil alamat memori dari variabel
-Contoh Lengkap
-c
-#include <stdio.h>
-
-int main() {
-    int health = 100;
-    int *health_ptr = &health;
-    
-    printf("Nilai health: %d\n", health);
-    printf("Alamat health: %p\n", &health);
-    printf("Isi health_ptr: %p\n", health_ptr);
-    printf("Nilai melalui health_ptr: %d\n", *health_ptr);
-    
-    // Ubah nilai melalui pointer
-    *health_ptr = 75;
-    printf("Health setelah diubah: %d\n", health);
-    
-    return 0;
-}
+/*
 Output:
 
-text
-Nilai health: 100
-Alamat health: 0x7ffd42a8b5ac
-Isi health_ptr: 0x7ffd42a8b5ac
-Nilai melalui health_ptr: 100
-Health setelah diubah: 75
-Tips Penting
-Selalu inisialisasi pointer - set ke NULL jika belum digunakan
+Health sekarang: 100
+Health sekarang: 50
+*/
+```
 
-Hati-hati dengan dereferencing - pastikan pointer menunjuk ke alamat yang valid
+## Menulis (Write) Data ke Pointer
 
-Pahami perbedaan * dan & - * untuk nilai, & untuk alamat
+Nilai dari variabel yang ada dalam pointer dapat ditulis (write) atau dimanipulasi menggunakan operasi _dereferencing_ juga, sama halnya membaca data dari pointer. Sebagai contoh:
 
-Selanjutnya: Pass By Reference >>
+```c
+int health = 100;
+int *health_ptr = &health;
+
+/* ... */
+
+/* Tampilkan nilai awal sebelum dimanipulasi */
+printf("Health sekarang: %d\n", health);
+
+/* Menulis/memanipulasi nilai variabel yang dirujuk oleh pointer `health_ptr` */
+/* Menggunakan operasi dereferencing (*) */
+*health_ptr = 75;
+
+/* Print variabel `health`, nilainya sudah berubah */
+/* Karena telah dimanipulasi melalui pointer `health_ptr` */
+printf("Health sekarang: %d\n", health);
+
+/*
+Output:
+
+Health sekarang: 100
+Health sekarang: 75
+*/
+```
+
+## NULL Pointer
+
+Pointer dapat diberikan nilai khusus yaitu **NULL**. Hal ini berguna apabila anda tidak ingin meng-insialisasi pointer tersebut, melainkan memberinya dengan nilai NULL dan beberapa saat kemudian, program anda mengecek apakah pointer masih kosong (NULL) atau sudah merujuk ke suatu variabel. Jika compiler tidak bisa menemukan kata kunci NULL, pastikan untuk meng-include header **stddef.h** terlebih dahulu. Sebagai contoh:
+
+```c
+#include <stddef.h> /* Supaya NULL terdefinisi dengan jelas */
+
+/* ... */
+
+int health = 100;
+int *health_ptr;
+int choice;
+
+printf("Masukkan 1 untuk bertarung, 0 untuk keluar : ");
+scanf("%d", &choice);
+
+if (choice == 1) {
+    /* Isi pointer `health_ptr` dengan referensi pada variabel `health` */
+    health_ptr = &health;
+} else {
+    /* Atur `health_ptr` menjadi NULL pointer */
+    health_ptr = NULL;
+}
+
+if (health_ptr != NULL) {
+    /* Area ini dijalankan jika `health_ptr` sudah tidak NULL */
+    /* Yang mana artinya `health_ptr` sudah merujuk ke variabel tertentu */
+
+    printf("Anda memilih untuk bertarung\n");
+
+    *health_ptr = 85;
+} else {
+    /* Area ini dijalankan jika `health_ptr` bernilai NULL */
+    /* Yang mana artinya `health_ptr` tidak merujuk ke variabel apapun */
+
+    printf("Anda memilih untuk keluar dari permainan\n");
+}
+
+printf("Health akhir anda : %d\n", health);
+
+/*
+Output #1:
+
+Masukkan 1 untuk bertarung, 0 untuk keluar : 1
+Anda memilih untuk bertarung
+Health akhir anda : 85
+
+Output #2:
+Masukkan 1 untuk bertarung, 0 untuk keluar : 0
+Anda memilih untuk keluar dari permainan
+Health akhir anda : 100
+*/
+```
+
+## Constant Pointer
+
+Akses menuju variabel melalui pointer dapat dibatasi menjadi hanya membaca saja (read-only) dengan menerapkan kata kunci **const**. Sebagai contoh:
+
+```c
+int health = 100;
+const int *health_ptr; /* Read-only pointer */
+
+/* ... */
+
+health_ptr = &health; /* Atur supaya mengarah ke variabel `health` */
+
+/* Membaca (read) pointer `health_ptr` */
+printf("Health sekarang: %d\n", *health_ptr);
+
+/* Menulis (write) pointer `health_ptr` */
+*health_ptr = 50; /* ERROR: Pointer `health_ptr` hanya read-only, tidak bisa write */
+
+/* Membaca (read) lagi pointer `health_ptr` */
+printf("Health sekarang: %d\n", *health_ptr);
+```
+
+[Pass By Reference >>](2-PassByRef.md)
