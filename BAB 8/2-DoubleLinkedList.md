@@ -68,16 +68,18 @@ struct node {
 };
 
 struct node *createNode(int value) {
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));  
 
-    struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->data = value;
     newNode->next = NULL;
+    newNode->prev = NULL;  
+
     return newNode;
 }
 ```
 
 <details>
-<summary> Weapon Code </summary>
+<summary> Weapon Code 1 </summary>
 
 ```c
 struct Weapon {
@@ -161,25 +163,28 @@ Dalam menambahkan elemen ke dalam linked list, gunakan code berikut:
 Menambahkan di awal
 ```c
 struct node *addAtBeginning(struct node *head) {
+    struct node *temp = createNode(value);
 
-    struct node *temp = createNode(7);
-
-    temp->next = head;
-    head->prev = temp;
+    if (head != NULL) { 
+        temp->next = head;
+        head->prev = temp;
+    }
     head = temp;
-
+    
     return head;
 }
 ```
 
-Menambahkan di tengah
+Menambahkan di akhir
 ```c
 struct node *addAtEnd(struct node *tail) {
 
-    struct node *temp = createNode(40);
+    struct node *temp = createNode();
 
-    temp->prev = tail;
-    tail->next = temp;
+    if (tail != NULL) {  
+        temp->prev = tail;
+        tail->next = temp;
+    }
     tail = temp;
 
     return tail;    
@@ -189,24 +194,25 @@ struct node *addAtEnd(struct node *tail) {
 Menambahkan di suatu posisi
 ```c
 struct node *insertAtPosition(struct node *head, int value, int position) {
-    
     struct node *temp = createNode(value);
     struct node *ptr = head;
-
+    
     int pos = 1;
     while (pos != position - 1) {
         ptr = ptr->next;
         pos++;
     }
-
+    
     printf("%d\n", ptr->data);
-
+    
     temp->prev = ptr;
     temp->next = ptr->next;
-    ptr->next->prev = temp;
+    if (ptr->next != NULL) {  
+        ptr->next->prev = temp;
+    }
     ptr->next = temp;
-
-    return temp;
+    
+    return head;  
 }
 ```
 
@@ -319,11 +325,13 @@ Dalam menghapus elemen dari linked list, gunakan code berikut:
 Menghapus di awal:
 ```c
 struct node *deleteAtBeginning(struct node *head) {
-
     struct node *temp = head;
+
     free(head);
     head = temp;
-    head->prev = NULL;
+    if (head != NULL) { 
+        head->prev = NULL;
+    }
 
     return head;
 
@@ -334,10 +342,17 @@ Menghapus di akhir:
 ```c
 struct node *deleteAtEnd(struct node *tail) {
 
-    tail = tail->prev;
-    free(tail);
-    tail->next = NULL;
+    if (tail == NULL) return NULL;  
+    
+    struct node *temp = tail->prev; 
 
+    free(tail);
+    tail = temp;
+
+    if (tail != NULL) {  
+        tail->next = NULL;
+    }
+    
     return tail;
 }
 ```
@@ -357,9 +372,12 @@ struct node *deleteAtPosition(struct node *head, int position) {
     struct node *temp = ptr->next;
     ptr->next = temp->next;
 
-    temp->next->prev = ptr;
+    if (temp->next != NULL) {  
+        temp->next->prev = ptr;
+    }
     free(temp);
-    temp = NULL;
+
+    return head;
 }
 ```
 
@@ -503,19 +521,24 @@ Gunakan code berikut untuk melakukan iterasi `while`:
 Mencetak list secara urut
 ```c
 void printList(struct node *head) {
+
     struct node *temp = head;
+
     while (temp != NULL) {
         printf("%d ", temp->data);
         temp = temp->next;
     }
     printf("\n");
+
 }
 ```
 
 Mencetak list secara terbalik (dari belakang)
 ```c
 void printListReversed(struct node *tail) {
+
     struct node *temp = tail;
+    
     while (temp != NULL) {
         printf("%d ", temp->data);
         temp = temp->prev;
@@ -560,6 +583,9 @@ while (iterator != NULL) {
 ```
 
 </details>
+
+<details>
+<summary> Full Weapon Code </summary>
 
 ### Contoh Penggunaan
 
@@ -677,6 +703,8 @@ Menghapus elemen pertama...
 
 */
 ```
+
+</details>
 
 ## Kelebihan dan Kekurangan Masing-Masing
 
