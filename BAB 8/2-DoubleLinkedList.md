@@ -1,4 +1,4 @@
-[<< Silabus](../silabus.md)
+[<< Linked List](1-LinkedList.md)
 
 # 8.2 - Array dan Linked List
 
@@ -399,4 +399,4 @@ Array memiliki kelebihan yaitu dapat mengakses suatu elemen posisi tertentu deng
 
 Kemudian linked list memiliki kelebihan yaitu proses penambahan/penghapusan elemen mudah dilakukan secara efektif. Namun kekurangannya adalah untuk mengakses suatu elemen/node tidak bisa langsung berdasarkan indeks namun harus melalui proses iterasi terlebih dahulu untuk menemukan elemen/node yang cocok. Cocok digunakan apabila ukuran koleksi berubah-ubah dan tidak perlu mengidentifikasi elemen berdasarkan indeks (dalam kata lain, hanya operasi iterasi seluruh elemen saja yang dipertimbangkan).
 
-[Stack dan Queue >>](2-StackQueue.md)
+[Stack dan Queue >>](3-StackQueue.md)

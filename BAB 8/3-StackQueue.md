@@ -1,4 +1,4 @@
-[<< Array dan Linked List](1-ArrayLinkedList.md)
+[<< Double Linked List](2-DoubleLinkedList.md)
 
 # 8.3 - Stack dan Queue
 
@@ -93,4 +93,4 @@ struct WeaponNode *weapons_head(struct WeaponList *queue) {
 }
 ```
 
-[Tree >>](3-Tree.md)
+[Tree >>](4-Tree.md)

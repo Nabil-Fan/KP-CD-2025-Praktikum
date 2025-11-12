@@ -25,7 +25,7 @@ Mari kita deklarasikan node linked listnya terlebih dahulu:
 
 typedef struct node {
     int val;
-    struct node * next;
+    struct node *next;
 } node_t;
 
 ```
@@ -34,7 +34,7 @@ Sekarang kita bisa menggunakan node. Mari kita buat variabel lokal yang menunjuk
 
 ```c
 
-node_t * head = NULL;
+node_t *head = NULL;
 head = (node_t *) malloc(sizeof(node_t));
 if (head == NULL) {
     return 1;
@@ -45,12 +45,12 @@ head->next = NULL;
 
 ```
 
-Kami baru saja membuat variabel pertama dalam daftar. Kita harus menetapkan nilainya, dan item berikutnya menjadi kosong, jika kita mau untuk menyelesaikan mengisi daftar. Perhatikan bahwa kita harus selalu memeriksa apakah malloc mengembalikan nilai NULL atau tidak.
+Nah, kita baru saja membuat variabel pertama dalam daftar. Kita harus menetapkan nilainya, dan item berikutnya menjadi kosong, jika kita mau untuk menyelesaikan mengisi daftar. Perhatikan bahwa kita harus selalu memeriksa apakah malloc mengembalikan nilai NULL atau tidak.
 
 Untuk menambahkan variabel ke akhir daftar, kita hanya dapat melanjutkan maju ke pointer berikutnya:
 
 ```c
-node_t * head = NULL;
+node_t *head = NULL;
 head = (node_t *) malloc(sizeof(node_t));
 head->val = 1;
 head->next = (node_t *) malloc(sizeof(node_t));
@@ -67,8 +67,8 @@ Sekarang, mari kita coba buat fungsi yang mencetak semua item dalam list. Untuk 
 
 ```c
 
-void print_list(node_t * head) {
-    node_t * current = head;
+void print_list(node_t *head) {
+    node_t *current = head;
 
     while (current != NULL) {
         printf("%d\n", current->val);
@@ -84,8 +84,8 @@ Untuk melakukan iterasi semua anggot linked list, kita gunakan pointer yang dipa
 
 ```c
 
-void push(node_t * head, int val) {
-    node_t * current = head;
+void push(node_t *head, int val) {
+    node_t *current = head;
     while (current->next != NULL) {
         current = current->next;
     }
@@ -112,7 +112,7 @@ Karena kita menggunakan fungsi untuk melakukan operasi ini, kita dapat memodifik
 ```c
 
 void push(node_t ** head, int val) {
-    node_t * new_node;
+    node_t *new_node;
     new_node = (node_t *) malloc (sizeof(node_t));
 
     new_node->val = val;
@@ -133,9 +133,9 @@ Berikut kodenya:
 
 ```c
 
-int pop(node_t ** head) {
+int pop(node_t **head) {
     int retval = -1;
-    node_t * next_node = NULL;
+    node_t *next_node = NULL;
 
     if (*head == NULL) {
         return -1;
@@ -157,7 +157,7 @@ Menghapus item terakhir dari daftar sangat mirip dengan menambahkannya ke akhir 
 
 ```c
 
-int remove_last(node_t * head) {
+int remove_last(node_t *head) {
     int retval = 0;
     /* jika hanya ada satu item dalam list, hapus saja */
     if (head->next == NULL) {
@@ -167,7 +167,7 @@ int remove_last(node_t * head) {
     }
 
     /* melihat item kedua ke item terakhir dalam list */
-    node_t * current = head;
+    node_t *current = head;
     while (current->next->next != NULL) {
         current = current->next;
     }
@@ -194,11 +194,11 @@ Berikut adalah algoritmanya:
 
 ```c
 
-int remove_by_index(node_t ** head, int n) {
+int remove_by_index(node_t **head, int n) {
     int i = 0;
     int retval = -1;
-    node_t * current = *head;
-    node_t * temp_node = NULL;
+    node_t *current = *head;
+    node_t *temp_node = NULL;
 
     if (n == 0) {
         return pop(head);
@@ -225,3 +225,5 @@ int remove_by_index(node_t ** head, int n) {
 }
 
 ```
+
+[Double Linked List >>](2-DoubleLinkedList.md)

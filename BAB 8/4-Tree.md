@@ -1,4 +1,4 @@
-[<< Stack dan Queue](2-StackQueue.md)
+[<< Stack dan Queue](3-StackQueue.md)
 
 # 8.4 - Tree
 
