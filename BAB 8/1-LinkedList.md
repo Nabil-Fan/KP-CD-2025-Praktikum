@@ -157,28 +157,34 @@ Menghapus item terakhir dari daftar sangat mirip dengan menambahkannya ke akhir 
 
 ```c
 
-int remove_last(node_t *head) {
+int remove_last(node_t **head) {
     int retval = 0;
-    /* jika hanya ada satu item dalam list, hapus saja */
-    if (head->next == NULL) {
-        retval = head->val;
-        free(head);
+
+    if (*head == NULL) {
+        return -1;
+    }
+
+    //kalau cuman ada satu node
+    if ((*head)->next == NULL) {
+        retval = (*head)->val;
+        free(*head);
+        *head = NULL;
         return retval;
     }
 
-    /* melihat item kedua ke item terakhir dalam list */
-    node_t *current = head;
+    //akses ke elemen kedua sebelum terakhir
+    node_t *current = *head;
     while (current->next->next != NULL) {
         current = current->next;
     }
 
-    /* sekarang sudah menunjuk ke item kedua ke item terakhir, jadi kita hapus current->next */
     retval = current->next->val;
     free(current->next);
     current->next = NULL;
-    return retval;
 
+    return retval;
 }
+
 
 ```
 
