@@ -1,6 +1,6 @@
 [<< Materi Sebelumnya (Enumeration)](2-Enum.md)
 
-# 8.3 - Bit Manipulation
+# 7.3 - Bit Manipulation
 
 Apa itu Bit Manipulation? Bit Manipulation adalah tindakan memanipulasi bit secara algoritmik atau data lain yang lebih pendek atau kecil dari satu byte. Dan bahasa C sangat efisien dalam melakukan memanipulasi bit ini.
 

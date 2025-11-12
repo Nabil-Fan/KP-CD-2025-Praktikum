@@ -1,6 +1,6 @@
 [<< Silabus](../silabus.md)
 
-# 8.1 - Struct dan Union
+# 7.1 - Struct dan Union
 
 ## Struct
 

@@ -1,6 +1,6 @@
 [<< Materi Sebelumnya (Struct dan Union)](1-StructUnion.md)
 
-# 8.2 - Enumeration
+# 7.2 - Enumeration
 
 ## Pengantar
 
