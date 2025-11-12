@@ -94,6 +94,31 @@ struct WeaponList {
 };
 ```
 
+<details>
+<summary> Clean Source Code </summary>
+
+```c
+struct Weapon {
+    char name[50];
+    int price;
+    int damage;
+    int rounds;
+};
+
+struct WeaponNode {
+    struct Weapon data;
+    struct WeaponNode *prev;
+    struct WeaponNode *next;
+};
+
+struct WeaponList {
+    struct WeaponNode *first;
+    struct WeaponNode *last;
+};
+```
+
+</details>
+
 Kemudian untuk variabel bertipe koleksi `struct Weapon` menggunakan linked list, perhatikan contoh berikut:
 
 ```c
@@ -161,6 +186,49 @@ void insertWeapon(struct WeaponList *list, struct WeaponNode *after, const struc
     }
 }
 ```
+
+<details>
+<summary> Clean Source Code </summary>
+
+```c
+void insertWeapon(struct WeaponList *list, struct WeaponNode *after, const struct Weapon *data) {
+    if (after != NULL) {
+
+        struct WeaponNode *newNode, *oldNext;
+
+        newNode = (struct WeaponNode *)malloc(sizeof(struct WeaponNode));
+        newNode->data = *data;
+        newNode->prev = after; 
+        newNode->next = after->next;
+
+        after->next = newNode;
+
+        if (newNode->next == NULL) {
+            list->last = newNode;
+        } else {
+            newNode->next->prev = newNode;
+        }
+    } else {
+
+        struct WeaponNode *newNode;
+
+        newNode = (struct WeaponNode *)malloc(sizeof(struct WeaponNode));
+        newNode->data = *data;
+        newNode->prev = NULL;
+        newNode->next = list->first; 
+
+        list->first = newNode;
+
+        if (list->last == NULL) {
+            list->last = newNode;
+        } else {
+            newNode->next->prev = newNode;
+        }
+    }
+}
+```
+
+</details>
 
 ### Menghapus Elemen
 
@@ -239,6 +307,60 @@ void deleteWeapon(struct WeaponList *list, struct WeaponNode *node) {
     }
 }
 ```
+
+<details>
+<summary> Clean Source Code </summary>
+
+```c
+void deleteWeapon(struct WeaponList *list, struct WeaponNode *node) {
+    if (list->first != NULL) {
+        if (node == list->first) {
+
+            struct WeaponNode *oldNext;
+
+            oldNext = list->first->next;
+
+            free(list->first);
+
+            list->first = oldNext;
+
+            if (list->first == NULL) {
+                list->last = NULL;
+            } else {
+                list->first->prev = NULL;
+            }
+        } else if (node == list->last) {
+
+            struct WeaponNode *oldPrev;
+
+            oldPrev = list->last->prev;
+
+            free(list->last);
+
+            list->last = oldPrev;
+
+            if (list->last == NULL) {
+                list->first = NULL;
+            } else {
+                list->last->next = NULL;
+            }
+        } else {
+
+            struct WeaponNode *oldPrev, *oldNext;
+
+            oldPrev = node->prev;
+            oldNext = node->next;
+
+            free(node);
+
+            oldPrev->next = oldNext;
+            oldNext->prev = oldPrev;
+        }
+    }
+}
+```
+
+</details>
 
 ### Iterasi Seluruh Node Linked List
 
