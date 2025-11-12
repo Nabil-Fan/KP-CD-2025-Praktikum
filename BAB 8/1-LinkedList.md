@@ -164,6 +164,7 @@ int remove_last(node_t **head) {
         return -1;
     }
 
+    //kalau cuman ada satu node
     if ((*head)->next == NULL) {
         retval = (*head)->val;
         free(*head);
@@ -171,6 +172,7 @@ int remove_last(node_t **head) {
         return retval;
     }
 
+    //akses ke elemen kedua sebelum terakhir
     node_t *current = *head;
     while (current->next->next != NULL) {
         current = current->next;
