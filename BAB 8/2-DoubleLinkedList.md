@@ -58,7 +58,26 @@ Dalam materi ini, kita akan membahas untuk kasus **Doubly Linked List** (tiap no
 
 ### Definisi
 
-Definisikan tipe elemen koleksinya sebagai **node** berupa _self-referential structure_ yang berisi data informasi tentang elemennya terlebih dahulu, misal untuk kasus koleksi dari `struct Weapon`:
+Definisikan tipe elemen koleksinya sebagai **node** berupa _self-referential structure_ yang berisi data informasi tentang elemennya terlebih dahulu:
+
+```c
+struct node {
+    int data;
+    struct node *next;
+    struct node *prev;
+};
+
+struct node *createNode(int value) {
+
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    newNode->data = value;
+    newNode->next = NULL;
+    return newNode;
+}
+```
+
+<details>
+<summary> Weapon Code </summary>
 
 ```c
 struct Weapon {
@@ -94,8 +113,10 @@ struct WeaponList {
 };
 ```
 
+</details>
+
 <details>
-<summary> Clean Source Code </summary>
+<summary> Clean Weapon Code 1 </summary>
 
 ```c
 struct Weapon {
@@ -119,7 +140,9 @@ struct WeaponList {
 
 </details>
 
-Kemudian untuk variabel bertipe koleksi `struct Weapon` menggunakan linked list, perhatikan contoh berikut:
+
+<details>
+<summary> Weapon Code 2 </summary>
 
 ```c
 struct WeaponList weapons;
@@ -129,9 +152,66 @@ weapons.first = NULL;
 weapons.last = NULL;
 ```
 
+</details>
+
 ### Menambahkan Elemen
 
-Dalam menambahkan elemen ke dalam linked list, untuk kasus `struct Weapon`, gunakan code berikut:
+Dalam menambahkan elemen ke dalam linked list, gunakan code berikut:
+
+Menambahkan di awal
+```c
+struct node *addAtBeginning(struct node *head) {
+
+    struct node *temp = createNode(7);
+
+    temp->next = head;
+    head->prev = temp;
+    head = temp;
+
+    return head;
+}
+```
+
+Menambahkan di tengah
+```c
+struct node *addAtEnd(struct node *tail) {
+
+    struct node *temp = createNode(40);
+
+    temp->prev = tail;
+    tail->next = temp;
+    tail = temp;
+
+    return tail;    
+}
+```
+
+Menambahkan di suatu posisi
+```c
+struct node *insertAtPosition(struct node *head, int value, int position) {
+    
+    struct node *temp = createNode(value);
+    struct node *ptr = head;
+
+    int pos = 1;
+    while (pos != position - 1) {
+        ptr = ptr->next;
+        pos++;
+    }
+
+    printf("%d\n", ptr->data);
+
+    temp->prev = ptr;
+    temp->next = ptr->next;
+    ptr->next->prev = temp;
+    ptr->next = temp;
+
+    return temp;
+}
+```
+
+<details>
+<summary> Weapon Code 3 </summary>
 
 ```c
 /* akan menambah elemen setelah `after` */
@@ -187,8 +267,10 @@ void insertWeapon(struct WeaponList *list, struct WeaponNode *after, const struc
 }
 ```
 
+</details>
+
 <details>
-<summary> Clean Source Code </summary>
+<summary> Clean Weapon Code 3 </summary>
 
 ```c
 void insertWeapon(struct WeaponList *list, struct WeaponNode *after, const struct Weapon *data) {
@@ -232,7 +314,57 @@ void insertWeapon(struct WeaponList *list, struct WeaponNode *after, const struc
 
 ### Menghapus Elemen
 
-Dalam menghapus elemen dari linked list, untuk kasus `struct Weapon`, gunakan code berikut:
+Dalam menghapus elemen dari linked list, gunakan code berikut:
+
+Menghapus di awal:
+```c
+struct node *deleteAtBeginning(struct node *head) {
+
+    struct node *temp = head;
+    free(head);
+    head = temp;
+    head->prev = NULL;
+
+    return head;
+
+}
+```
+
+Menghapus di akhir:
+```c
+struct node *deleteAtEnd(struct node *tail) {
+
+    tail = tail->prev;
+    free(tail);
+    tail->next = NULL;
+
+    return tail;
+}
+```
+
+Menghapus di suatu posisi:
+```c
+struct node *deleteAtPosition(struct node *head, int position) {
+
+    struct node *ptr = head;
+
+    int pos = 1;
+    while (pos != position - 1) {
+        ptr = ptr->next;
+        pos++;
+    }
+
+    struct node *temp = ptr->next;
+    ptr->next = temp->next;
+
+    temp->next->prev = ptr;
+    free(temp);
+    temp = NULL;
+}
+```
+
+<details>
+<summary> Weapon Code 4 </summary>
 
 ```c
 /* akan menghapus elemen `node` pada linked list */
@@ -308,8 +440,10 @@ void deleteWeapon(struct WeaponList *list, struct WeaponNode *node) {
 }
 ```
 
+</details>
+
 <details>
-<summary> Clean Source Code </summary>
+<summary> Clean Weapon Code 4 </summary>
 
 ```c
 void deleteWeapon(struct WeaponList *list, struct WeaponNode *node) {
@@ -364,7 +498,34 @@ void deleteWeapon(struct WeaponList *list, struct WeaponNode *node) {
 
 ### Iterasi Seluruh Node Linked List
 
-Untuk kasus `struct Weapon`, gunakan code berikut untuk melakukan iterasi
+Gunakan code berikut untuk melakukan iterasi `while`:
+
+Mencetak list secara urut
+```c
+void printList(struct node *head) {
+    struct node *temp = head;
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+```
+
+Mencetak list secara terbalik (dari belakang)
+```c
+void printListReversed(struct node *tail) {
+    struct node *temp = tail;
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->prev;
+    }
+    printf("\n");
+}
+```
+
+<details>
+<summary> Weapon Code 5 </summary>
 
 ```c
 struct WeaponList list;
@@ -397,6 +558,8 @@ while (iterator != NULL) {
     /* `iterator = iterator->next` akan error apabila `iterator` sudah terhapus dengan `deleteWeapon` */
 }
 ```
+
+</details>
 
 ### Contoh Penggunaan
 
