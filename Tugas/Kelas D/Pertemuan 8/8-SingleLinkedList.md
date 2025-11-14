@@ -38,7 +38,7 @@ Student List (After adding new students at the first, third, and last position)
 5. John Doe - L0125200
 6. Houshou Marine - L0121221
 
-(_Challenge Example_)
+(Challenge Example)
 Student List (After deleting the third position student):
 1. Kaiser de Emperana Beelzebub IV - L0123000
 2. Muchammad Abdurohim - L0120120
