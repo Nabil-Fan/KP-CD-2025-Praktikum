@@ -35,8 +35,6 @@ struct node *createNode (int data) {
 
 ### Iterasi Seluruh Node Linked List
 
-Gunakan code berikut untuk melakukan iterasi `while`:
-
 Mencetak list secara urut
 ```c
 void printList(struct node *head) {
@@ -154,8 +152,6 @@ weapons.last = NULL;
 </details>
 
 ### Menambahkan Elemen
-
-Dalam menambahkan elemen ke dalam linked list, gunakan code berikut:
 
 Menambahkan di Awal:
 ```c
@@ -329,8 +325,6 @@ void insertWeapon(struct WeaponList *list, struct WeaponNode *after, const struc
 </details>
 
 ### Menghapus Elemen
-
-Dalam menghapus elemen dari linked list, gunakan code berikut:
 
 Menghapus di Awal:
 ```c
