@@ -1,64 +1,19 @@
 [<< Linked List](1-LinkedList.md)
 
-# 8.2 - Array dan Linked List
+# 8.2 - Double Linked List
 
-Koleksi (kumpulan obyek atau elemen) dalam program dapat disimpan menggunakan struktur data **array** (yang biasa kita pakai sebelumnya) dan **linked list**. Kita akan membahas tentang perbandingan array dan linked list pada materi ini.
+## Pengertian
 
-## Array
+Double Linked List adalah salah satu jenis linked list yang setiap node-nya memiliki dua referensi: satu menunjuk ke node sebelumnya **(prev)** dan satu lagi menunjuk ke node berikutnya **(next)**. Ini berbeda dengan Single Linked List yang hanya memiliki satu referensi yang menunjuk ke node berikutnya. Struktur node ganda ini memungkinkan traversal dua arah, yaitu dari awal ke akhir (forward) dan dari akhir ke awal (backward).
 
-Elemen-elemen yang berada di dalam koleksi disimpan secara berjejeran dalam memori (dengan kata lain, lokasi suatu elemen pada RAM/memori berjejeran langsung dengan lokasi elemen sebelumnya dan berikutnya).
-
-### Definisi
-
-Deklarasi array seperti biasa
-
-```c
-int price_list[100];
-int item_count; /* untuk kasus dynamic size, tambahkan variable yang menunjukkan jumlah item */
-```
-
-### Mengakses Elemen
-
-Digunakan untuk mengakses elemen tertentu. Bisa langsung menggunakan indeks, contoh:
-
-```c
-printf("M4A1 price: %d\n", price_list[3]); /* akses indeks ke-3 */
-```
-
-### Memodifikasi Elemen
-
-Digunakan untuk memodifikasi nilai elemen tertentu. Bisa langsung menggunakan indeks, contoh:
-
-```c
-price_list[3] = 3100; /* akses indeks ke-3 */
-```
-
-### Iterasi Seluruh Elemen Array
-
-Dapat menggunakan **for** dengan control variable berupa indeks yang sedang dikunjungi, misal:
-
-```c
-int i; /* control variable: indeks yang sedang dikunjungi */
-
-/* ... */
-
-/* Penjelajahan array `price_list` */
-for (i = 0; i < item_count; i++) {
-    printf("Harga barang ke-%d : %d\n", (i + 1), price_list[i]);
-}
-```
-
-## Linked List
-
-Elemen-elemen yang berada di dalam koleksi disimpan secara terpisah dalam memori (dengan kata lain, lokasi suatu elemen pada RAM/memori tidak berjejeran langsung dengan lokasi elemen sebelumnya dan berikutnya). Untuk menentukan suatu lokasi elemen pada linked list, diperlukan informasi pada salah satu obyek/elemennya yang menunjukkan pointer yang mengarah pada lokasi elemen berikutnya/sebelumnya.
-
-Konsep linked list tidak terpisah dari pointer (termasuk dynamic memory allocation). Apabila anda belum memahami pointer, diharapkan untuk membaca lagi supaya tidak kesulitan dalam memahami materi ini.
-
-Dalam materi ini, kita akan membahas untuk kasus **Doubly Linked List** (tiap nodenya terdapat pointer ke elemen sebelum dan sesudahnya) karena bisa sangat serbaguna untuk berbagai kasus penerapan (misal **stack** dan **queue** yang akan dibahas pada topik berikutnya).
+Struktur node pada double linked list terdiri dari tiga komponen utama:
+1. Data: Komponen yang menyimpan nilai atau informasi yang disimpan dalam node.
+2. Pointer ke Node Sebelumnya (prev): Referensi yang menunjuk ke node sebelumnya dalam linked list.
+3. Pointer ke Node Berikutnya (next): Referensi yang menunjuk ke node berikutnya dalam linked list.
 
 ### Definisi
 
-Definisikan tipe elemen koleksinya sebagai **node** berupa _self-referential structure_ yang berisi data informasi tentang elemennya terlebih dahulu:
+Definisi berisi data informasi tentang elemennya:
 
 ```c
 struct node {
@@ -67,14 +22,56 @@ struct node {
     struct node *prev;
 };
 
-struct node *createNode(int value) {
-    struct node *newNode = (struct node *)malloc(sizeof(struct node));  
+struct node *createNode (int data) {
 
-    newNode->data = value;
-    newNode->next = NULL;
-    newNode->prev = NULL;  
+    struct node *temp = malloc (sizeof (struct node));
+    temp->prev = NULL;
+    temp->data = data;
+    temp->next = NULL;
 
-    return newNode;
+    return temp;
+}
+```
+
+### Iterasi Seluruh Node Linked List
+
+Gunakan code berikut untuk melakukan iterasi `while`:
+
+Mencetak list secara urut
+```c
+void printList(struct node *head) {
+
+    struct node *temp = head;
+
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+
+}
+```
+
+Mencetak list secara terbalik (dari belakang)
+```c
+void printListReversed(struct node *head) {
+
+    struct node *tail = head;
+    struct node *temp = tail;
+
+    if (head == NULL) {
+        return;
+    }
+    
+    while (tail->next != NULL) {
+        tail = tail->next;
+    }
+    
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->prev;
+    }
+    printf("\n");
 }
 ```
 
@@ -160,59 +157,72 @@ weapons.last = NULL;
 
 Dalam menambahkan elemen ke dalam linked list, gunakan code berikut:
 
-Menambahkan di awal
+Menambahkan di Awal:
 ```c
-struct node *addAtBeginning(struct node *head) {
-    struct node *temp = createNode(value);
+struct node *addAtBeginning (struct node *head, int data) {
+    struct node *temp = createNode (data);
 
-    if (head != NULL) { 
+    if (head != NULL) {
         temp->next = head;
         head->prev = temp;
     }
-    head = temp;
     
+    return temp;
+}
+```
+
+Menambahkan di Akhir:
+```c
+struct node *addAtEnd (struct node *head, int data) {
+
+    struct node *temp = createNode (head, data);
+    struct node *ptr = head;
+
+    if (head != NULL) {
+        
+        while (ptr->next != NULL) {
+            ptr = ptr->next;
+        }
+
+        temp->prev = ptr;
+        ptr->next = temp;
+
+    } else {
+        return temp;
+    }
+
     return head;
 }
 ```
 
-Menambahkan di akhir
+Menambahkan di Suatu Posisi:
 ```c
-struct node *addAtEnd(struct node *tail) {
-
-    struct node *temp = createNode();
-
-    if (tail != NULL) {  
-        temp->prev = tail;
-        tail->next = temp;
-    }
-    tail = temp;
-
-    return tail;    
-}
-```
-
-Menambahkan di suatu posisi
-```c
-struct node *insertAtPosition(struct node *head, int value, int position) {
-    struct node *temp = createNode(value);
+struct node *addAtPosition (struct node *head, int data, int position) {
+    
+    struct node *temp = createNode (data);
     struct node *ptr = head;
+    
+    if (position == 1) {
+        return addAtBeginning (head, data);
+    }
+    
+    if (ptr->next == NULL) {
+        return addAtEnd (head, data); 
+    }
     
     int pos = 1;
     while (pos != position - 1) {
         ptr = ptr->next;
         pos++;
     }
-    
-    printf("%d\n", ptr->data);
-    
-    temp->prev = ptr;
     temp->next = ptr->next;
-    if (ptr->next != NULL) {  
-        ptr->next->prev = temp;
-    }
     ptr->next = temp;
-    
-    return head;  
+
+    if (temp->next != NULL) 
+        temp->next->prev = temp;
+    temp->prev = ptr;
+
+    return head;
 }
 ```
 
@@ -322,60 +332,68 @@ void insertWeapon(struct WeaponList *list, struct WeaponNode *after, const struc
 
 Dalam menghapus elemen dari linked list, gunakan code berikut:
 
-Menghapus di awal:
+Menghapus di Awal:
 ```c
-struct node *deleteAtBeginning(struct node *head) {
-    struct node *temp = head;
-
-    free(head);
-    head = temp;
-    if (head != NULL) { 
-        head->prev = NULL;
+struct node *delAtBeginning (struct node *head) {
+    
+    struct node *ptr = head;
+    
+    if (head == NULL) {
+        return NULL;
     }
+    
+    head = head->next;
+    free(ptr);
+
+    if (head != NULL)
+        head->prev = NULL;
 
     return head;
-
 }
 ```
 
-Menghapus di akhir:
+Menghapus di Akhir:
 ```c
-struct node *deleteAtEnd(struct node *tail) {
-
-    if (tail == NULL) return NULL;  
-    
-    struct node *temp = tail->prev; 
-
-    free(tail);
-    tail = temp;
-
-    if (tail != NULL) {  
-        tail->next = NULL;
-    }
-    
-    return tail;
-}
-```
-
-Menghapus di suatu posisi:
-```c
-struct node *deleteAtPosition(struct node *head, int position) {
+struct node *delAtEnd (struct node *head) {
 
     struct node *ptr = head;
 
+    while (ptr->next->next != NULL) {
+        ptr = ptr->next;
+    }
+
+    free (ptr->next);
+    ptr->next = NULL;
+
+    return head;
+}
+```
+
+Menghapus di Suatu Posisi:
+```c
+struct node *delAtPosition (struct node *head, int position) {
+
+    struct node *ptr = head;
+    struct node *temp;
+
+    if (position == 1) {
+        head = delAtBeginning (head);
+        return head;
+    } else if (ptr->next == NULL) {
+        head = delAtEnd (head);
+    }
+
     int pos = 1;
-    while (pos != position - 1) {
+    while (pos != position) {
         ptr = ptr->next;
         pos++;
     }
+    
+    temp = ptr->prev;
+    temp->next = ptr->next;
+    ptr->next->prev = temp;
 
-    struct node *temp = ptr->next;
-    ptr->next = temp->next;
-
-    if (temp->next != NULL) {  
-        temp->next->prev = ptr;
-    }
-    free(temp);
+    free(ptr);
 
     return head;
 }
@@ -513,39 +531,6 @@ void deleteWeapon(struct WeaponList *list, struct WeaponNode *node) {
 ```
 
 </details>
-
-### Iterasi Seluruh Node Linked List
-
-Gunakan code berikut untuk melakukan iterasi `while`:
-
-Mencetak list secara urut
-```c
-void printList(struct node *head) {
-
-    struct node *temp = head;
-
-    while (temp != NULL) {
-        printf("%d ", temp->data);
-        temp = temp->next;
-    }
-    printf("\n");
-
-}
-```
-
-Mencetak list secara terbalik (dari belakang)
-```c
-void printListReversed(struct node *tail) {
-
-    struct node *temp = tail;
-    
-    while (temp != NULL) {
-        printf("%d ", temp->data);
-        temp = temp->prev;
-    }
-    printf("\n");
-}
-```
 
 <details>
 <summary> Weapon Code 5 </summary>
