@@ -1,6 +1,6 @@
 
 
-# 9.3 - Sequential Access
+# 10.2 - Sequential Access
 
 **Sequential access** menyimpulkan bahwa file dapat direpresentasikan sebagai kumpulan karakter atau bytes yang panjangnya tidak diketahui. File berjenis **plaintext** umumnya dioperasikan secara sequential access. Dengan demikian, pembahasan seputar topik ini hanya seputar file berjenis plaintext saja.
 

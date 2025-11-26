@@ -1,6 +1,6 @@
 
 
-# 9.2 - Pengantar File Processing
+# 10.1 - Pengantar File Processing
 
 Program pada komputer tidak dapat dipisahkan dari file untuk mendukung keberjalanannya. Sebagai contoh, jika anda sedang memainkan suatu video game, pasti terdapat fitur untuk menyimpan dan melanjutkan progress game yang telah kalian jalankan. Atau contoh yang lain adalah ketika anda menyimpan setting/konfigurasi suatu program ke dalam file kemudian memuatnya lagi. Hal-hal seperti itu diimplementasikan dengan **File Processing** atau **File Handling** dalam pemrograman.
 
