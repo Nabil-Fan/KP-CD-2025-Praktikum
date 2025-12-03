@@ -45,5 +45,5 @@ Selanjutnya, buat sebuah dokumentasi dari program supaya asisten dapat memahami 
 
 ## Contoh Pengumpulan
 
-`Responsi2_L0125000_EldarieIrmaFanomenel_TokoBuku.c`
-`Responsi2_L0125000_EldarieIrmaFanomenel_TokoBuku.pdf`
+- `Responsi2_L0125000_EldarieIrmaFanomenel_TokoBuku.c`
+- `Responsi2_L0125000_EldarieIrmaFanomenel_TokoBuku.pdf`
