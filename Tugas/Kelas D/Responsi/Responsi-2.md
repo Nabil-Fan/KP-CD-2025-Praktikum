@@ -40,7 +40,10 @@ Selanjutnya, buat sebuah dokumentasi dari program supaya asisten dapat memahami 
 
 - File source code merupakan bahasa C dengan ekstensi `.c`
 - Format nama file source code `Responsi2_NIM_NamaLengkap_JudulProgram.c`
-  Misal: `Responsi2_L0125000_EldarieIrmaFanomenel_TokoBuku.c`
 - Format nama file pembahasan `Responsi2_NIM_NamaLengkap_JudulProgram.pdf`
-  Misal: `Responsi2_L0125000_EldarieIrmaFanomenel_TokoBuku.pdf`
 - File tidak boleh berbentuk `.zip`, `.rar`, atau file archiver lainnya
+
+## Contoh Pengumpulan
+
+`Responsi2_L0125000_EldarieIrmaFanomenel_TokoBuku.c`
+`Responsi2_L0125000_EldarieIrmaFanomenel_TokoBuku.pdf`
