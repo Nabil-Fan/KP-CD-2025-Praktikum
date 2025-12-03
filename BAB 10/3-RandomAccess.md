@@ -1,5 +1,5 @@
 
-# 9.4 - Random Access
+# 10.3 - Random Access
 
 **Random access** menyimpulkan bahwa file direpresentasikan sebagai kumpulan bytes yang panjangnya dapat diketahui dan bisa digambarkan sebagai kumpulan blok biner dengan tiap blok memiliki ukuran tertentu dan dapat disimpan dalam suatu variabel atau obyek bertipe struct. File berjenis **binary** umumnya dioperasikan secara random access. Dengan demikian, pembahasan seputar topik ini hanya seputar file berjenis binary saja.
 

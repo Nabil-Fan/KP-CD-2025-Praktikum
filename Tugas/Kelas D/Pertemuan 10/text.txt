@@ -1,0 +1,3 @@
+Kami adalah mahasiswa Universitas Sebelas Maret program studi Informatika angkatan 2025.
+Saat ini kami mengikuti praktikum Konsep Pemrograman Bahasa C untuk mempelajari dasar-dasar logika dan pemrograman.
+Melalui praktikum ini, kami berharap dapat memahami cara berpikir komputasional yang menjadi dasar bagi mata kuliah pemrograman mendatang.
